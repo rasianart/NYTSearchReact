@@ -1,0 +1,22 @@
+<script src="/js/scrape.js"></script>
+
+<div>{{articleObj.title}}</div>
+<img src="{{articleObj.img}}">
+<div>{{articleObj.summary}}</div>
+<p>{{articleObj.text}}</p>
+
+<div id="display-comments">
+    {{#each articleObj.comments}}
+        <div id="comment-contain">
+            <!-- <div class="user-name">{{this.name}}</div> -->
+            <div class="user-comment" data-comment="{{this.comment}}">{{this.comment}}</div>
+            <button class="delete-comment" type="submit">Delete Comment</button>
+        </div>
+    {{/each}}
+</div>
+
+<form data-title="{{articleObj.title}}">
+    <textarea id="name" rows="1" cols="50" placeholder="Name"></textarea>
+    <textarea id="comment" rows="4" cols="50"></textarea>
+    <button id="submit-comment" type="submit">Submit</button>
+</form>
