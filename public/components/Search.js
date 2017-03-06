@@ -50,24 +50,30 @@ export default class Search extends React.Component{
 
         return (
             <div id="search-contain">
-                <div id="search-title">Search</div>
-                <div id="form-contain">
-                    <form id="search-form" onSubmit={this.handleSubmit}>
-                        <label>
-                            Topic:
-                            <input id="topic" name="topic" value={this.state.topic} onChange={this.handleTopic} ref="input"></input>
-                        </label>
-                        <label>
-                            Start Year:
-                            <input id="start-year" name="startYear" value={this.state.startYear} onChange={this.handleStartYear} placeholder="YYYYMMDD" ref="input"></input>
-                        </label>
-                        <label>
-                            End Year:
-                            <input id="end-year" name="endYear" value={this.state.endYear} onChange={this.handleEndYear} placeholder="YYYYMMDD" ref="input"></input>
-                        </label>
-                        <button id="search-button" type="submit" value="Submit">Search</button>
-                    </form>
-                </div>
+                <nav className="navbar navbar-inverse navbar-fixed-top">
+                    <div className="container">
+                      <div className="navbar-header">
+                        <a className="navbar-brand" href="/">New York Times Search</a>
+                        <div id="form-contain navbar" className="navbar-collapse collapse">
+                            <form id="search-form" className="navbar-form navbar-right" onSubmit={this.handleSubmit}>
+                                <label className="form-group">
+                                    Topic:
+                                    <input id="topic" className="form-control" name="topic" value={this.state.topic} onChange={this.handleTopic} ref="input"></input>
+                                </label>
+                                <label className="form-group">
+                                    Start Year:
+                                    <input id="start-year" className="form-control" name="startYear" value={this.state.startYear} onChange={this.handleStartYear} placeholder="YYYYMMDD" ref="input"></input>
+                                </label>
+                                <label className="form-group">
+                                    End Year:
+                                    <input id="end-year" className="form-control" name="endYear" value={this.state.endYear} onChange={this.handleEndYear} placeholder="YYYYMMDD" ref="input"></input>
+                                </label>
+                                <button id="search-button" className="btn btn-success" type="submit" value="Submit">Search</button>
+                            </form>
+                         </div>
+                       </div>
+                    </div>
+                </nav>
                 <Result results={this.state.results} />
 
             </div>

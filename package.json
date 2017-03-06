@@ -19,6 +19,7 @@
   "homepage": "https://github.com/rasianart/Scrape#readme",
   "dependencies": {
     "babel-preset-react": "^6.23.0",
+    "bluebird": "^3.5.0",
     "body-parser": "^1.16.1",
     "cheerio": "^0.22.0",
     "express": "^4.14.1",

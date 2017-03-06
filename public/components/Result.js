@@ -5,12 +5,16 @@ let socket = io();
 export default class Result extends React.Component{
     constructor(props) {
     super(props);
-        this.state = {article: {}};
+        this.state = {article: {},
+                      socket: {}};
     }
 
     componentDidMount = () => {
-        socket.on('serverMessage', function (data) {
-          console.log(data);
+        socket.on('serverMessage', (data) => {
+          this.setState({socket: data});
+          setTimeout(() => {
+              this.setState({socket: {}});
+          }, 2000);
         });
     }
 
@@ -52,13 +56,33 @@ export default class Result extends React.Component{
                </div>);
         });
 
-        return (
-            <div id="result-contain">
-                <div id="result-title">Results</div>
-                <div id="result-contain">{result}</div>
+        if (Object.keys(this.state.socket).length > 0) {
+            return (
+                <div id="result-container">
+                    <div id="result-title">Results</div>
+                    <div id="result-contain">{result}</div>
+                    <div id="socket-contain">
+                        <div id="socket-message">Article Saved to Database.</div>
+                        <div id="socket-title">{this.state.socket.title}</div>
+                    </div>
+                </div>
+            )
+        }
 
-            </div>
-        );
+        if (result.length > 0) {
+            return (
+                <div id="result-container">
+                    <div id="result-title">Results</div>
+                    <div id="result-contain">{result}</div>
+                </div>
+            );
+        } else {
+            return (
+                <div id="result-container">
+                    <div id="result-title"></div>
+                </div>
+            );
+        }
 
     }
 }

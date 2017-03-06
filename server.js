@@ -8,7 +8,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const exphbs = require("express-handlebars");
 const mongoose = require('mongoose');
-
+mongoose.Promise = require('bluebird');
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
@@ -31,7 +31,7 @@ let server = require('http').Server(app);
 server.listen(8000);
 
 var io = require('socket.io')(server);
-// socket.io demo
+
 io.on('connection', function (socket) {
   socket.emit('server event', { foo: 'bar' });
   socket.on('client event', function (data) {
@@ -54,13 +54,8 @@ app.use(webpackHotMiddleware(compiler, {
     log: console.log
 }));
 
-// Routes =============================================================
-
-require("./routes/html-routes.js")(app);
 require("./routes/data-routes.js")(app, io);
 
-mongoose.connect('mongodb://localhost/nyt');
 
-// app.listen(PORT, () => {
-//     console.log("App listening on PORT " + PORT);
-// });
+
+mongoose.connect('mongodb://localhost/nyt');
